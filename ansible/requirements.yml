@@ -1,0 +1,3 @@
+# Install a role from GitHub
+- name: api
+  src: https://github.com/okamigo2021/testgalaxy.git
