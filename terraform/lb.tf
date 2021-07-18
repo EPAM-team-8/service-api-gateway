@@ -54,7 +54,7 @@ resource "aws_lb_target_group" "api_tg" {
 # NLB attachment
 # =================================
 resource "aws_lb_target_group_attachment" "attach_api" {
-  target_group_arn = aws_lb_target_group.targetgrp.arn
+  target_group_arn = aws_lb_target_group.api_tg.arn
   target_id        = element(aws_instance.API.*.id, count.index)
   port             = 8080
   count            = "1"
