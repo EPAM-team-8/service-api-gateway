@@ -9,7 +9,7 @@ resource "aws_lb" "api_alb" {
   security_groups = [
     data.aws_security_group.sg.id
   ]
-  subnets = data.aws_subnet.public_subnet.id
+  subnets = [data.aws_subnet.public_subnet.id]
 
 }
 
