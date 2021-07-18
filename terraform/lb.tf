@@ -2,7 +2,7 @@
 # ALB
 # =================================
 resource "aws_lb" "api_alb" {
-  name               = "api_alb-tf"
+  name               = "api_alb"
   internal           = false
   load_balancer_type = "application"
 
