@@ -5,11 +5,23 @@ data "aws_vpc" "my-vpc"{
   }
 }
 
-data "aws_subnet" "publicSubnet" {
+data "aws_subnet" "public_subnet" {
   vpc_id = data.aws_vpc.my-vpc.id
   filter {
     name = "tag:Name"
     values = ["public"]
+  }
+}
+
+data "aws_route53_zone" "api-zone" {
+  name         = "epam.one."
+}
+
+data "aws_subnet" "private_subnet" {
+  vpc_id = data.aws_vpc.my-vpc.id
+  filter {
+    name = "tag:Name"
+    values = ["private"]
   }
 }
 
@@ -28,3 +40,5 @@ output "subnet" {
 output "sg" {
     value = data.aws_security_group.sg.id
 }
+
+data "aws_availability_zones" "available" {}

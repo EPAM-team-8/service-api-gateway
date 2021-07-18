@@ -1,14 +1,11 @@
-resource "aws_route53_zone" "consul_aws" {
-  name = "api.com"
-vpc {
-  vpc_id  = data.aws_vpc.my-vpc.id
-  }
-}
+resource "aws_route53_record" "api-lb-record" {
+  zone_id = data.aws_route53_zone.api-zone.zone_id
+  name    = "api"
+  type    = "A"
 
-resource "aws_route53_record" "record" {
-  zone_id = aws_route53_zone.consul_aws.zone_id
-  name = "api.com"
-  type = "A"
-  ttl  = "300"
-  records = [aws_instance.API.private_ip]
+  alias {
+      name                   = aws_lb.api-alb.dns_name
+      zone_id                = aws_lb.api-alb.zone_id
+      evaluate_target_health = true
+  }
 }

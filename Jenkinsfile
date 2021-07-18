@@ -3,6 +3,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        TF_VAR_key="${SSH_KEY}"
     }
     
     agent any
@@ -38,9 +39,12 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'epamkey',keyFileVariable: 'SSH_KEY')]) {
-                sh 'cp "$SSH_KEY" ./awskey.pem'
+                //sh 'cp "$SSH_KEY" ./awskey.pem'
                 dir('terraform'){
-                sh ('terraform apply -auto-approve')
+                sh """
+                    export TF_VAR_key=${SSH_KEY}
+                    terraform apply -auto-approve
+                    """
                 }
                 }
             }
