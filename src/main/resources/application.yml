@@ -36,10 +36,10 @@ spring:
   profiles: default
   cloud:
     consul:
-      host: consul.com
+      host: consul.epam.one
       port: 8500
       discovery:
-        hostName: api.com  # IP address or dns name
+        hostName: api.epam.one  # IP address or dns name
         instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
         healthCheckPath: /actuator/health
         healthCheckInterval: 15s
