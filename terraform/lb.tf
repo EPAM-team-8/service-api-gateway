@@ -47,7 +47,7 @@ resource "aws_lb_target_group" "api_tg" {
   name     = var.aws_service_name
   port     = var.http_tcp_listener_port
   protocol = "HTTP"
-  vpc_id   = data.aws_vpc.main.id
+  vpc_id   = data.aws_vpc.my-vpc.id
 }
 
 # =================================
