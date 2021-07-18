@@ -2,7 +2,7 @@
 # ALB
 # =================================
 resource "aws_lb" "api_alb" {
-  name               = "api_alb"
+  name               = "api-alb-tf"
   internal           = false
   load_balancer_type = "application"
 
@@ -55,7 +55,6 @@ resource "aws_lb_target_group" "api_tg" {
 # =================================
 resource "aws_lb_target_group_attachment" "attach_api" {
   target_group_arn = aws_lb_target_group.api_tg.arn
-  target_id        = element(aws_instance.API.*.id, count.index)
+  target_id        = aws_instance.API.id
   port             = 8080
-  count            = "1"
 }
