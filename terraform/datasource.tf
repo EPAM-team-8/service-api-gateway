@@ -34,7 +34,7 @@ output "vpc" {
     value = data.aws_vpc.my-vpc.id
 }
 output "subnet" {
-    value = data.aws_subnet.publicSubnet.id
+    value = data.aws_subnet.public_subnet.id
 }
 
 output "sg" {
