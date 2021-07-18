@@ -2,7 +2,7 @@
 # ALB
 # =================================
 resource "aws_lb" "api_alb" {
-  name               = "api-alb-tf"
+  name               = "api_alb-tf"
   internal           = fasle
   load_balancer_type = "application"
 
@@ -29,7 +29,7 @@ resource "aws_lb_listener" "forward_alb" {
 }
 
 resource "aws_lb_listener" "forward_api" {
-  load_balancer_arn = aws_lb.api-alb.arn
+  load_balancer_arn = aws_lb.api_alb.arn
   port              = 8080
   protocol          = "HTTP"
 
