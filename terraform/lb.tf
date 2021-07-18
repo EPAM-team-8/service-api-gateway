@@ -44,7 +44,7 @@ resource "aws_lb_listener" "forward_api" {
 # ALB Target Group
 # =================================
 resource "aws_lb_target_group" "api_tg" {
-  name     = api
+  name     = "api-lb-tg"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.my-vpc.id
