@@ -3,7 +3,7 @@
 # =================================
 resource "aws_lb" "api_alb" {
   name               = "api_alb-tf"
-  internal           = fasle
+  internal           = false
   load_balancer_type = "application"
 
   security_groups = [
