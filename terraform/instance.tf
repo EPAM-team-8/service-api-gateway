@@ -17,7 +17,7 @@ resource "null_resource" "ansible_automation" {
     }
 
   provisioner "local-exec" {
-    command = "sleep 50; ansible-galaxy install -p ${path.root}/../ansible/roles -r ${path.root}/../ansible/requirements.yml --force && cd ../ansible && ansible-playbook api.yml -i aws_ec2.yaml --key-file ${var.key}"
+    command = "sleep 60; ansible-galaxy install -p ${path.root}/../ansible/roles -r ${path.root}/../ansible/requirements.yml --force && cd ../ansible && ansible-playbook api.yml -i aws_ec2.yaml --key-file ${var.key}"
   }
   depends_on = [
     aws_instance.API
